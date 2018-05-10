@@ -40,13 +40,13 @@ long_query_time = {{ mysql_slow_query_time }}
 # Replication
 server-id = {{ mysql_server_id }}
 
-{% if mysql_replication_role == 'master' %}
 log_bin = mysql-{{ mysql_cluster_name }}-bin
 log-bin-index = mysql-{{ mysql_cluster_name }}-bin.index
 expire_logs_days = {{ mysql_expire_logs_days }}
 max_binlog_size = {{ mysql_max_binlog_size }}
 binlog_format = {{mysql_binlog_format}}
 
+{% if mysql_replication_role == 'master' %}
 {% for db in mysql_databases %}
 {% if db.replicate|default(1) %}
 binlog_do_db = {{ db.name }}
