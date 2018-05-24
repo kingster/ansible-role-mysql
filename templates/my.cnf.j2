@@ -58,6 +58,8 @@ binlog_ignore_db = {{ db.name }}
 
 {% if mysql_replication_role == 'slave' %}
 read_only
+#skip-slave-start
+log-slave-updates #daisychain
 relay-log = relay-bin
 relay-log-index = relay-bin.index
 {% endif %}
